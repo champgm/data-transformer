@@ -17,7 +17,7 @@ InputSpecification:
   Extra1:
     Type: String
   Extra2:
-    Type:String
+    Type: String
 
 OutputSpecification:
   OrderId:
@@ -39,7 +39,7 @@ MappingSpecification:
   OrderId:
     Input: Order Number
   OrderDate:
-    Input: !Sub ${Year}-${Month}-${Day}
+    Input: !Sub ${InputSpecification.Year}-${InputSpecification.Month}-${InputSpecification.Day}
   ProductId:
     Input: Product Number
   ProductName:
