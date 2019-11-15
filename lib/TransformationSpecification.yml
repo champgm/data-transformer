@@ -1,0 +1,48 @@
+
+InputSpecification:
+  Order Number:
+    Type: String
+  Year:
+    Type: String
+  Month:
+    Type: String
+  Day:
+    Type: String
+  Product Number:
+    Type: String
+  Product Name:
+    Type: String
+  Count:
+    Type: String
+  Extra1:
+    Type: String
+  Extra2:
+    Type:String
+
+OutputSpecification:
+  OrderId:
+    Type: Number
+  OrderDate:
+    Type: Date
+  ProductId:
+    Type: String
+  ProductName:
+    Type: String
+  Quantity:
+    Type: Number
+    Default: 0
+  Unit:
+    Type: String
+    Default: kg
+
+MappingSpecification:
+  OrderId:
+    Input: Order Number
+  OrderDate:
+    Input: !Sub ${Year}-${Month}-${Day}
+  ProductId:
+    Input: Product Number
+  ProductName:
+    Input: Product Name
+  Quality:
+    Input: Count
