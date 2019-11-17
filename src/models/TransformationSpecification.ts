@@ -1,41 +1,27 @@
-import { verifyType } from './';
+import { SpecificationType } from './Type';
+import { Concatenation } from '../type/Concat';
+import { Reference } from '../type/Reference';
 
 export interface SpecificationItem {
-  Type: string;
+  Type: SpecificationType;
   Default: string;
   Required: boolean;
-}
-
-export function validateSpecificationItem(item: any) {
-  verifyType(item.Type, 'Type', 'string', true);
-  verifyType(item.Default, 'Default', 'string', false);
-  verifyType(item.Required, 'Required', 'boolean', false);
 }
 
 export interface InputOutputSpecification {
   [field: string]: SpecificationItem;
 }
 
-export function validateInputOutputSpecification(specification: any) {
-  Object.keys(specification).forEach((item) => {
-    validateSpecificationItem(item);
-  });
-}
-
 export interface MappingItem {
-  Input: string;
-}
-
-export function validateMappingItem(item: any) {
-  verifyType(item.Input, 'Input', 'string', true);
+  Input: string | Concatenation | Reference;
 }
 
 export interface MappingSpecification {
-  [field: string]: SpecificationItem;
+  [field: string]: MappingItem;
 }
 
-export function validateInputMappingSpecification(specification: any) {
-  Object.keys(specification).forEach((item) => {
-    validateMappingItem(item);
-  });
+export interface TransformationSpecification {
+  MappingSpecification: MappingSpecification;
+  InputSpecification: InputOutputSpecification;
+  OutputSpecification: InputOutputSpecification;
 }

@@ -1,4 +1,3 @@
-
 InputSpecification:
   Order Number:
     Type: String
@@ -37,12 +36,17 @@ OutputSpecification:
 
 MappingSpecification:
   OrderId:
-    Input: Order Number
+    Input: !Ref Order Number
   OrderDate:
-    Input: !Sub ${InputSpecification.Year}-${InputSpecification.Month}-${InputSpecification.Day}
+    Input: !Concat
+      - !Ref Year
+      - "-"
+      - !Ref Month
+      - "-"
+      - !Ref Day
   ProductId:
-    Input: Product Number
+    Input: !Ref Product Number
   ProductName:
-    Input: Product Name
+    Input: !Ref Product Name
   Quality:
-    Input: Count
+    Input: !Ref Count

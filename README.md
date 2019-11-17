@@ -1,4 +1,4 @@
-# crisp-takehome
+# data-transformer
 
 ## Assumptions
  * The instructions say, `without (significant) external dependencies`, so I guess that means some kind of
