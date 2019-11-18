@@ -5,7 +5,7 @@ import { Reference } from './Reference';
 export class Concatenation {
   public type: CustomType = CustomType.Concatenation;
   constructor(public array: (string | Reference)[]) { }
-  public toString(datum: any) {
+  public toString(datum: any): string {
     const stringArray = this.array.map((item) => {
       if (typeof item === 'string') {
         return item;
@@ -15,6 +15,7 @@ export class Concatenation {
       }
       throw new Error('Unrecognized type in Concatenation. Concatenation only supports string and Reference.');
     });
+    return stringArray.join('');
   }
 }
 

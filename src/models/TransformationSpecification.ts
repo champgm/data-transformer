@@ -13,7 +13,7 @@ export interface InputOutputSpecification {
 }
 
 export interface MappingItem {
-  Input: string | Concatenation | Reference;
+  Input: Concatenation | Reference;
 }
 
 export interface MappingSpecification {

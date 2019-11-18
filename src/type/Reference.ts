@@ -6,7 +6,7 @@ import { CustomType } from '.';
 export class Reference {
   public type: CustomType = CustomType.Reference;
   constructor(public reference: string) { }
-  public toString(datum: any) {
+  public toString(datum: any): string {
     return _.get(datum, this.reference);
   }
 }
