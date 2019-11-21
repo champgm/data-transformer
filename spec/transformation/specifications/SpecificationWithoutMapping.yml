@@ -1,0 +1,14 @@
+InputSpecification:
+  FirstField:
+    Type: Number
+
+OutputSpecification:
+  FirstField:
+    Type: String
+  FieldWithoutMapping:
+    Type: String
+    Default: FieldWithoutMapping
+
+MappingSpecification:
+  FirstField:
+    Input: !Ref FirstField

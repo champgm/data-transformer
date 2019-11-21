@@ -1,11 +1,10 @@
 import csvParse from 'csv-parse';
 import jsYaml from 'js-yaml';
-import fs from 'fs';
 import stream from 'stream';
 import streamTransform from 'stream-transform';
 
 import { TransformationSpecification } from '../specification/TransformationSpecification';
-import { TransformationError, TransformationResult } from '.';
+import { TransformationError, TransformationResult } from './TransformationTypes';
 import { SpecificationType } from '../specification/Type';
 import { CUSTOM_SCHEMA } from '../yaml';
 
@@ -99,7 +98,7 @@ export class DataTransformer {
    * Returns a stream of data, transformed from a stream of raw CSV data
    * according to the given specification
    */
-  public getStream(csvStream: stream.Readable) {
+  public transformStream(csvStream: stream.Readable): stream.Transform {
     const parser: csvParse.Parser = csvParse({ columns: true });
     return csvStream.pipe(parser).pipe(this.getTransformer());
   }

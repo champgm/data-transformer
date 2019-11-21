@@ -1,4 +1,4 @@
-#!/usr/bin / env; ts - node;
+#!/usr/bin/env ts-node;
 
 import csvParse from 'csv-parse';
 import fs from 'fs';
@@ -23,4 +23,4 @@ const dataTransformer: DataTransformer = new DataTransformer(transformationSpeci
 
 console.log("\nOutputting data from DataTransformer's configured stream...");
 // Now, get the stream from the data transformer and pipe it wherever you'd like
-dataTransformer.getStream(csvReadStream).pipe(process.stdout);
+dataTransformer.transformStream(csvReadStream).pipe(process.stdout);

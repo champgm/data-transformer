@@ -1,0 +1,13 @@
+InputSpecification:
+  FirstField:
+    Type: Number
+
+OutputSpecification:
+  FirstField:
+    Type: String
+  FieldWithoutMappingOrDefault:
+    Type: String
+
+MappingSpecification:
+  FirstField:
+    Input: !Ref FirstField

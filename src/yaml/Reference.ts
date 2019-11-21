@@ -1,6 +1,6 @@
 import jsYaml from 'js-yaml';
 
-import { CustomType } from '.';
+import { CustomType } from './CustomTypes';
 
 export class Reference {
   public type: CustomType = CustomType.Reference;
@@ -15,5 +15,5 @@ export const reference = new jsYaml.Type('!Ref', {
   resolve: data => (typeof data === 'string'),
   construct: (data: string) => new Reference(data),
   instanceOf: Reference,
-  represent: data => JSON.stringify(data),
+  represent: data => data,
 });

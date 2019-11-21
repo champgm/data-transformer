@@ -1,4 +1,4 @@
-#!/usr/bin / env; ts - node;
+#!/usr/bin/env ts-node;
 
 import csvParse from 'csv-parse';
 import fs from 'fs';

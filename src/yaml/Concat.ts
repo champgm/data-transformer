@@ -1,5 +1,5 @@
 import jsYaml from 'js-yaml';
-import { CustomType } from '.';
+import { CustomType } from './CustomTypes';
 import { Reference } from './Reference';
 
 export class Concatenation {
@@ -13,7 +13,6 @@ export class Concatenation {
       if (item.type === CustomType.Reference) {
         return item.toString(datum);
       }
-      throw new Error('Unrecognized type in Concatenation. Concatenation only supports string and Reference.');
     });
     return stringArray.join('');
   }
@@ -22,7 +21,7 @@ export class Concatenation {
 export const concat = new jsYaml.Type('!Concat', {
   kind: 'sequence',
   resolve: (data) => {
-    if (data !== null && Array.isArray(data)) {
+    if (Array.isArray(data)) {
       for (const item of data) {
         if (typeof item !== 'string'
           && item.type !== CustomType.Reference) {
