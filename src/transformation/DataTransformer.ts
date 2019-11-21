@@ -60,10 +60,13 @@ export class DataTransformer {
             transformedDatum[key] = mappedStringValue.toLocaleUpperCase() === 'TRUE';
             return;
           case SpecificationType.Date:
-            transformedDatum[key] = Date.parse(mappedStringValue);
+            const parsedDate = Date.parse(mappedStringValue);
+            if (!parsedDate) throw new Error(`Unable to parse input in field, '${key}' as Date`);
+            transformedDatum[key] = new Date(parsedDate);
             return;
           case SpecificationType.Number:
             transformedDatum[key] = Number(mappedStringValue);
+            if (!transformedDatum[key]) throw new Error(`Unable to parse input in field, '${key}' as Number`);
             return;
           case SpecificationType.String:
             transformedDatum[key] = mappedStringValue;
@@ -72,10 +75,7 @@ export class DataTransformer {
       } catch (error) {
         // Save errors for later
         transformedDatum[key] = 'ERROR';
-        errors.push({
-          error,
-          message: `An error ocurred while transforming field, '${key}' of the following datum: ${JSON.stringify(datum)}`,
-        });
+        errors.push({ message: error.message });
       }
 
       // If it doesn't have a value by now, that switch statement must have fallen through

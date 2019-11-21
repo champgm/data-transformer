@@ -1,13 +1,10 @@
 InputSpecification:
   FirstField:
-    Type: Number
+    Type: String
 
 OutputSpecification:
   FirstField:
-    Type: String
-  FieldWithoutMapping:
-    Type: String
-    Default: FieldWithoutMappingDefault
+    Type: Boolean
 
 MappingSpecification:
   FirstField:

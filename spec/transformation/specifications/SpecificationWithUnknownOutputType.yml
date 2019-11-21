@@ -4,10 +4,7 @@ InputSpecification:
 
 OutputSpecification:
   FirstField:
-    Type: String
-  FieldWithoutMapping:
-    Type: String
-    Default: FieldWithoutMappingDefault
+    Type: UnknownType
 
 MappingSpecification:
   FirstField:

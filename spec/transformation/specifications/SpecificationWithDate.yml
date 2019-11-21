@@ -1,13 +1,10 @@
 InputSpecification:
   FirstField:
-    Type: Number
+    Type: Date
 
 OutputSpecification:
   FirstField:
-    Type: String
-  FieldWithoutMapping:
-    Type: String
-    Default: FieldWithoutMappingDefault
+    Type: Date
 
 MappingSpecification:
   FirstField:

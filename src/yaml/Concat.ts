@@ -10,9 +10,7 @@ export class Concatenation {
       if (typeof item === 'string') {
         return item;
       }
-      if (item.type === CustomType.Reference) {
-        return item.toString(datum);
-      }
+      return item.toString(datum);
     });
     return stringArray.join('');
   }
