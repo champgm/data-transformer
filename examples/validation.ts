@@ -1,11 +1,12 @@
-#!/usr/bin/env ts-node-to
+#!/usr/bin/env ts-node
 
 import csvParse from 'csv-parse';
 import jsYaml from 'js-yaml';
 import fs from 'fs';
 
-import { validateDatum } from '../src/models/Datum';
-import { CUSTOM_SCHEMA } from '../src/type';
+import { configureTransformer } from '../src';
+
+import { CUSTOM_SCHEMA } from '../src/yaml';
 
 console.log('Validating Transformation Specification...');
 const exampleInput = `${__dirname}/../lib/ExampleInput.csv`;
@@ -17,15 +18,7 @@ console.log(`transformationYml${JSON.stringify(transformationYml, null, 2)}`);
 console.log('Validating CSV file contents...');
 const csvStream = fs.createReadStream(exampleInput);
 const parser: csvParse.Parser = csvParse({ columns: true });
-parser.on('readable', () => {
-  let record;
-  while (record = parser.read()) {
-    console.log(`Read record: ${JSON.stringify(record)}`);
-    validateDatum(record);
-  }
-});
-parser.on('error', (error) => {
-  console.error(`Error parsing CSV: ${error.message}`);
-  console.error(`Error parsing CSV: ${JSON.stringify(error, null, 2)}`);
-});
-csvStream.pipe(parser);
+
+const transformer = configureTransformer(transformationYmlFile);
+
+csvStream.pipe(parser).pipe(transformer).pipe(process.stdout);

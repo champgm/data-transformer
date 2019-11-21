@@ -1,5 +1,4 @@
 import jsYaml from 'js-yaml';
-import _ from 'lodash';
 
 import { CustomType } from '.';
 
@@ -7,7 +6,7 @@ export class Reference {
   public type: CustomType = CustomType.Reference;
   constructor(public reference: string) { }
   public toString(datum: any): string {
-    return _.get(datum, this.reference);
+    return datum[this.reference];
   }
 }
 

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    
+    "example:stream": "ts-node examples/stream-example-csv.ts",
+    "example:transform": "ts-node examples/transform-example-csv.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +28,6 @@
   "dependencies": {
     "csv-parse": "^4.8.2",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.15"
+    "stream-transform": "^2.0.1"
   }
 }
