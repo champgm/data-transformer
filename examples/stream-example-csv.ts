@@ -1,6 +1,5 @@
 #!/usr/bin/env ts-node;
 
-import csvParse from 'csv-parse';
 import fs from 'fs';
 
 // This is a local import, but typically you would use this as a package dependency

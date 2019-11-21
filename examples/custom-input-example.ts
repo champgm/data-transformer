@@ -10,17 +10,11 @@ inquirer.prompt([
     type: 'input',
     name: 'specification',
     message: 'Input the path to the specification file you wish to transform',
-    // validate: (input, answers) => {
-    //   return fs.existsSync(answers.specification);
-    // },
   },
   {
     type: 'input',
     name: 'csv',
     message: 'Input the path to the CSV file you wish to transform',
-    // validate: (input, answers) => {
-    //   return fs.existsSync(answers.csv);
-    // },
   },
 ])
   .then((answers) => {
@@ -37,5 +31,5 @@ inquirer.prompt([
 
     console.log("\nOutputting data from DataTransformer's configured stream...");
     // Now, get the stream from the data transformer and pipe it wherever you'd like
-    dataTransformer.getStream(csvReadStream).pipe(process.stdout);
+    dataTransformer.transformStream(csvReadStream).pipe(process.stdout);
   });
