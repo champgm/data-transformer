@@ -65,7 +65,8 @@ export class DataTransformer {
             transformedDatum[key] = new Date(parsedDate);
             return;
           case SpecificationType.Number:
-            transformedDatum[key] = Number(mappedStringValue);
+            const mappedStringValueWithoutComma = mappedStringValue.replace(',', '');
+            transformedDatum[key] = parseFloat(mappedStringValueWithoutComma);
             if (!transformedDatum[key]) throw new Error(`Unable to parse input in field, '${key}' as Number`);
             return;
           case SpecificationType.String:
@@ -91,6 +92,9 @@ export class DataTransformer {
       success: errors.length === 0,
       transformedDatum,
     };
+    if (!transformationResult.success) {
+      console.error(`Some errors ocurred while transforming this datum: ${JSON.stringify(transformationResult)}`);
+    }
     return JSON.stringify(transformationResult);
   }
 

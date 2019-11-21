@@ -1,6 +1,6 @@
 {
-  "name": "data-transformer",
-  "version": "1.0.0",
+  "name": "gmc-transformer",
+  "version": "1.0.2",
   "description": "",
   "main": "tsc-out/index.js",
   "scripts": {

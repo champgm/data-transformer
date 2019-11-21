@@ -45,7 +45,7 @@ describe('DataTransformer', () => {
         expect(() => { dataTransformer.transform({}); })
           .toThrowError("No mapping or default output value found for required field, 'FieldWithoutMappingOrDefault'");
       });
-      it('a unknown output type is specified', () => {
+      it.only('a unknown output type is specified', () => {
         const testYmlPath = `${__dirname}/specifications/SpecificationWithUnknownOutputType.yml`;
         const transformationSpecification = fs.readFileSync(testYmlPath).toString('utf8');
         const dataTransformer = new DataTransformer(transformationSpecification);

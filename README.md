@@ -49,15 +49,18 @@ Loading example CSV input from file, 'examples/ExampleInput.csv'...
 Loading transformation specification from file, 'examples/TransformationSpecification.yml'...
 
 Outputting data from DataTransformer's configured stream...
-{"datum":{"Order Number":"1000","Year":"2018","Month":"1","Day":"1","Product Number":"P-10001","Product Name":"Arugola","Count":"5,250.50","Extra Col1":"Lorem","Extra Col2":"Ipsum","Empty Column":""},"errors":[],"success":true,"transformedDatum":{"OrderId":1000,"OrderDate":"2018-01-01T05:00:00.000Z","ProductId":"P-10001","ProductName":"Arugola","Quantity":0,"Unit":"kg"}}{"datum":{"Order Number":"1001","Year":"2017","Month":"12","Day":"12","Product Number":"P-10002","Product Name":"Iceberg lettuce","Count":"500.00","Extra Col1":"Lorem","Extra Col2":"Ipsum","Empty Column":""},"errors":[],"success":true,"transformedDatum":{"OrderId":1001,"OrderDate":"2017-12-12T00:00:00.000Z","ProductId":"P-10002","ProductName":"Iceberg lettuce","Quantity":0,"Unit":"kg"}}
+<<Data output here>>
 ```
 
 ## Library Usage
-
+I have also published this package to NPM as [gmc-transformer](https://www.npmjs.com/package/gmc-transformer). You can see an example of it used as a library in `examples/library-example.ts` or you can use it your own project by importing it. That would look something like this:
+```
+import { DataTransformer } from 'gmc-transformer';
+```
 
 # Next Steps
+ * Make transformations more robust, especially `Date` and `Number`
  * Make delimiter and other parsing options configurable (or flesh out documentation on self-configuring `csv-parse` and using the data transformer directly)
  * Support more Types, possibly even nested objects
- * Make transformations more robust, especially `Date`
  * Support more transformation types, maybe `!Sum`, `!Difference`, `!Uppercase`, whatever is needed
  * Allow multiple `InputSpecification` definitions to join and transform data sets

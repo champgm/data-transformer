@@ -48,5 +48,5 @@ MappingSpecification:
     Input: !Ref Product Number
   ProductName:
     Input: !Ref Product Name
-  Quality:
+  Quantity:
     Input: !Ref Count

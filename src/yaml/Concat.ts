@@ -23,13 +23,11 @@ export const concat = new jsYaml.Type('!Concat', {
       for (const item of data) {
         if (typeof item !== 'string'
           && item.type !== CustomType.Reference) {
-          console.log("Data in '!Concat' tag must be string or '!Reference'");
           return false;
         }
       }
       return true;
     }
-    console.log("Data within '!Concat' tag must be an array");
     return false;
   },
   construct: (data: any[]) => new Concatenation(data),
