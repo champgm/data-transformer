@@ -11,7 +11,7 @@
  * [stream-transform](https://github.com/adaltas/node-stream-transform) an extension of [Transform](https://nodejs.org/api/stream.html#stream_class_stream_transform) used for ease and readability when transforming data in a stream
 
 ## Mapping DSL
-The mappings should be defined in YAML format. Examples can be found in [the examples folder](https://github.com/champgm/data-transformer/tree/master/examples). The specification should include three top-level sections, `InputSpecification`, `OutputSpecification`, and `MappingSpecification`. Input and Output fields must have a Type, valid values are detailed below. Output fields may include a specified `Default` value. `MappingSpecification` objects' `Input` fields should consist of one or more mapping types, also detailed below.
+The mappings should be defined in YAML format. Examples can be found in [the examples folder](https://github.com/champgm/data-transformer/tree/master/examples). The specification should include three top-level sections, `InputSpecification`, `OutputSpecification`, and `MappingSpecification`. Input and Output fields must have a Type, valid values are detailed below. Output fields may include a specified `Default` value. `MappingSpecification` objects' `Input` fields should consist of one or more custom YAML types, also detailed below.
 
 ### Supported Input and Output Types
  * Number
@@ -19,9 +19,16 @@ The mappings should be defined in YAML format. Examples can be found in [the exa
  * Boolean
  * String
 
-### Supported Mapping Types
- * `!Concat` - String construction, similar to [CloudFormation's !Sub](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-sub.html)
- * `!Ref` - References values in the InputSpecification section of the yaml file
+### Supported Custom YAML Types
+ * `!Concat` - String construction, somewhat similar to [CloudFormation's !Join](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-join.html) but without a delimiter
+ * `!Ref` - References values in the InputSpecification section of the YAML file
+
+## Architecture / How It Works
+Given a valid mapping specification, the `DataTransformer` class parses that specification with `js-yaml`, augmenting the default YAML schema with a custom schema containing definitions for the currently supported `CustomYamlType`s. The `DataTransformer` instance can then be used to create a stream from a stream of CSV records or it can produce an instance of `stream.Transform` that can be used in streams outside of this library. 
+
+The parsed `TransformationSpecification` object contains default values (if defined) as well as transformation functions tailored to the values defined in the specification file. Each datum is given to the `DataTransformer`'s `transform` method, where it uses those default values and transformation functions to map datum values into the proper format defined by the `OutputSpecification`.
+
+![Class Structure](Structure.png "Class Structure")
 
 # Setup and Demonstration
 The project depends on Node.js and NPM. You can find out more about how to install those [here](https://www.npmjs.com/get-npm). Once that's taken care of, ideally, all project dependencies should be installed by running the following command:

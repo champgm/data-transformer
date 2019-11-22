@@ -1,10 +1,16 @@
 import jsYaml from 'js-yaml';
 
-import { CustomType } from './CustomTypes';
+import { CustomYamlType } from './CustomYamlType';
+import { CustomYamlTag } from './CustomYamlTag';
 
-export class Reference {
-  public type: CustomType = CustomType.Reference;
-  constructor(public reference: string) { }
+export class Reference extends CustomYamlTag {
+
+  public type: CustomYamlType = CustomYamlType.Reference;
+
+  constructor(public reference: string) {
+    super();
+  }
+
   public toString(datum: any): string {
     return String(datum[this.reference]);
   }

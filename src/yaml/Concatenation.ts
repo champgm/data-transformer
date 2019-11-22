@@ -1,10 +1,15 @@
 import jsYaml from 'js-yaml';
-import { CustomType } from './CustomTypes';
-import { Reference } from './Reference';
+import { CustomYamlType } from './CustomYamlType';
+import { CustomYamlTag } from './CustomYamlTag';
 
-export class Concatenation {
-  public type: CustomType = CustomType.Concatenation;
-  constructor(public array: (string | Reference)[]) { }
+export class Concatenation extends CustomYamlTag {
+
+  public type: CustomYamlType = CustomYamlType.Concatenation;
+
+  constructor(public array: (string | CustomYamlTag)[]) {
+    super();
+  }
+
   public toString(datum: any): string {
     const stringArray = this.array.map((item) => {
       if (typeof item === 'string') {
@@ -22,7 +27,7 @@ export const concat = new jsYaml.Type('!Concat', {
     if (Array.isArray(data)) {
       for (const item of data) {
         if (typeof item !== 'string'
-          && item.type !== CustomType.Reference) {
+          && item.type !== CustomYamlType.Reference) {
           return false;
         }
       }

@@ -1,4 +1,4 @@
-export enum CustomType {
+export enum CustomYamlType {
   Reference = 'Reference',
   Concatenation = 'Concatenation',
 }

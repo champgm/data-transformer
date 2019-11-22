@@ -1,5 +1,5 @@
 import { SpecificationType } from './Type';
-import { Concatenation } from '../yaml/Concat';
+import { Concatenation } from '../yaml/Concatenation';
 import { Reference } from '../yaml/Reference';
 
 export interface SpecificationItem {
