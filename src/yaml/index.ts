@@ -1,9 +1,6 @@
 import jsYaml from 'js-yaml';
 
-import { concat, Concatenation } from './Concatenation';
-import { reference, Reference } from './Reference';
-import { CustomYamlType } from './CustomYamlType';
+import { concat } from './Concatenation';
+import { reference } from './Reference';
 
 export const CUSTOM_SCHEMA = jsYaml.Schema.create([concat, reference]);
-
-

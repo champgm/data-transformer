@@ -1,7 +1,7 @@
 import 'jest';
 
 import { reference, Reference } from '../../src/yaml/Reference';
-import { CustomType } from '../../src/yaml/CustomTypes';
+import { CustomYamlType } from '../../src/yaml/CustomYamlType';
 
 describe('Reference', () => {
   let ref;
@@ -14,7 +14,7 @@ describe('Reference', () => {
     });
     it('should construct a Reference with given ref', async () => {
       const refConstruct = reference.construct(ref);
-      expect(refConstruct.type).toEqual(CustomType.Reference);
+      expect(refConstruct.type).toEqual(CustomYamlType.Reference);
     });
     it('should return representation unchanged', async () => {
       expect((reference.represent as (data: object) => any)(ref)).toBe(ref);

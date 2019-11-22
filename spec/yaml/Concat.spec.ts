@@ -1,7 +1,7 @@
 import 'jest';
 
-import { concat, Concatenation } from '../../src/yaml/Concat';
-import { CustomType } from '../../src/yaml/CustomTypes';
+import { concat, Concatenation } from '../../src/yaml/Concatenation';
+import { CustomYamlType } from '../../src/yaml/CustomYamlType';
 import { Reference } from '../../src/yaml/Reference';
 
 describe('Concat', () => {
@@ -15,7 +15,7 @@ describe('Concat', () => {
     });
     it('should construct a Concat with given cat', async () => {
       const catConstruct = concat.construct(cat);
-      expect(catConstruct.type).toEqual(CustomType.Concatenation);
+      expect(catConstruct.type).toEqual(CustomYamlType.Concatenation);
     });
     it('should return representation unchanged', async () => {
       expect((concat.represent as (data: object) => any)(cat)).toBe(cat);

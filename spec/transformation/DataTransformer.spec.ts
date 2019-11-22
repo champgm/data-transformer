@@ -45,7 +45,7 @@ describe('DataTransformer', () => {
         expect(() => { dataTransformer.transform({}); })
           .toThrowError("No mapping or default output value found for required field, 'FieldWithoutMappingOrDefault'");
       });
-      it.only('a unknown output type is specified', () => {
+      it('a unknown output type is specified', () => {
         const testYmlPath = `${__dirname}/specifications/SpecificationWithUnknownOutputType.yml`;
         const transformationSpecification = fs.readFileSync(testYmlPath).toString('utf8');
         const dataTransformer = new DataTransformer(transformationSpecification);
@@ -66,7 +66,6 @@ describe('DataTransformer', () => {
       const transformationSpecification = fs.readFileSync(testYmlPath).toString('utf8');
       const dataTransformer = new DataTransformer(transformationSpecification);
       const transformedDatum = JSON.parse(dataTransformer.transform({ FirstField: 'definitely not a date' }));
-      // expect(transformedDatum).toEqual('asdf');
       expect(transformedDatum.errors[0].message).toEqual('Unable to parse input in field, \'FirstField\' as Date');
       expect(transformedDatum.transformedDatum.FirstField).toEqual('ERROR');
     });

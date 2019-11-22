@@ -30,7 +30,7 @@ The parsed `TransformationSpecification` object contains default values (if defi
 
 ![Class Structure](Structure.png "Class Structure")
 
-# Setup and Demonstration
+# Setup, Demonstration, Testing
 The project depends on Node.js and NPM. You can find out more about how to install those [here](https://www.npmjs.com/get-npm). Once that's taken care of, ideally, all project dependencies should be installed by running the following command:
 ```bash
 npm install
@@ -57,6 +57,16 @@ Loading transformation specification from file, 'examples/TransformationSpecific
 
 Outputting data from DataTransformer's configured stream...
 <<Data output here>>
+```
+
+To lint and run unit tests, run this command:
+```
+npm run test
+```
+
+A code coverage report can be generated. The results will be found in the terminal output or in `coverage/lcov-report/index.html`. To generate the report, run this command:
+```
+npm run coverage
 ```
 
 ## Library Usage
